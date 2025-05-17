@@ -23,9 +23,12 @@ const RSVPForm: React.FC = () => {
   const [message, setMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  const [submitStatus, setSubmitStatus] = useState<string>("");
 
   const addGuest = (): void => {
-    setGuests([...guests, { name: "", dietary: "" }]);
+    if (guests.length < 2) {
+      setGuests([...guests, { name: "", dietary: "" }]);
+    }
   };
 
   const updateGuest = (
@@ -38,50 +41,46 @@ const RSVPForm: React.FC = () => {
     setGuests(updatedGuests);
   };
 
-  const handleSubmit = (e: React.FormEvent): void => {
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus("");
 
-    // Format the email body
-    const guestDetails = guests
-      .map(
-        (guest, idx) =>
-          `Guest ${idx + 1}: ${guest.name} ${
-            guest.dietary ? `(${guest.dietary})` : ""
-          }`
-      )
-      .join("\n");
+    try {
+      const response = await fetch("/api/rsvp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ guests, message }),
+        cache: "no-store",
+      });
 
-    const emailSubject = `RSVP for Wedding - ${guests[0].name}`;
-    const emailBody = `
-RSVP Details:
-${guestDetails}
+      const result = await response.json();
 
-Message:
-${message || "No message provided."}
-    `;
+      if (!response.ok) {
+        throw new Error(result.error || "Server error");
+      }
 
-    // Create mailto link
-    const mailtoLink = `mailto:your.email@example.com?subject=${encodeURIComponent(
-      emailSubject
-    )}&body=${encodeURIComponent(emailBody)}`;
+      // Show success message
+      setSubmitStatus("Thank you for your RSVP!");
 
-    // Open the email client
-    window.location.href = mailtoLink;
-
-    // Reset form after a short delay
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsDialogOpen(false);
+      // Reset form fields only, but keep the dialog open with the success message
       setGuests([{ name: "", dietary: "" }]);
       setMessage("");
-    }, 1000);
+    } catch (error) {
+      console.error("Error submitting RSVP:", error);
+      setSubmitStatus(
+        "Something went wrong. Please try again or contact us directly."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
-
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <Button className="px-16 py-6 bg-pink-200 hover:bg-pink-300 text-gray-800 rounded-full text-xl">
+        <Button className="px-16 py-6 bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800 rounded-full text-xl">
           RSVP
         </Button>
       </DialogTrigger>
@@ -98,73 +97,97 @@ ${message || "No message provided."}
             <p>Lauriston House, Sydney</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {guests.map((guest, index) => (
-              <div key={index} className="space-y-4">
-                <div>
-                  {index === 0 && (
-                    <label className="block mb-2 text-sm font-medium">
-                      *Please provide your full name
-                    </label>
-                  )}
-                  <Input
-                    placeholder="Full name"
-                    value={guest.name}
-                    onChange={(e) => updateGuest(index, "name", e.target.value)}
-                    required={index === 0}
-                    className="rounded-full border-gray-200"
-                  />
-                </div>
+          {submitStatus ? (
+            <div className="py-10 text-center">
+              <p className="text-xl font-medium text-green-600">
+                {submitStatus}
+              </p>
+              <p className="mt-4 text-gray-600">
+                We look forward to celebrating with you!
+              </p>
+              <Button
+                onClick={() => {
+                  setIsDialogOpen(false);
+                  setSubmitStatus("");
+                }}
+                className="mt-6 rounded-full bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800"
+              >
+                Close
+              </Button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {guests.map((guest, index) => (
+                <div key={index} className="space-y-4">
+                  <div>
+                    {index === 0 && (
+                      <label className="block mb-2 text-sm font-medium">
+                        *Please provide your full name
+                      </label>
+                    )}
+                    <Input
+                      placeholder="Full name"
+                      value={guest.name}
+                      onChange={(e) =>
+                        updateGuest(index, "name", e.target.value)
+                      }
+                      required={index === 0}
+                      className="rounded-full border-gray-200"
+                    />
+                  </div>
 
-                <div>
-                  {index === 0 && (
-                    <label className="block mb-2 text-sm font-medium">
-                      Dietary preference or restrictions
-                    </label>
-                  )}
-                  <Input
-                    placeholder="Dietary preferences"
-                    value={guest.dietary}
-                    onChange={(e) =>
-                      updateGuest(index, "dietary", e.target.value)
-                    }
-                    className="rounded-full border-gray-200"
-                  />
+                  <div>
+                    {index === 0 && (
+                      <label className="block mb-2 text-sm font-medium">
+                        Dietary preference or restrictions
+                      </label>
+                    )}
+                    <Input
+                      placeholder="Dietary preferences"
+                      value={guest.dietary}
+                      onChange={(e) =>
+                        updateGuest(index, "dietary", e.target.value)
+                      }
+                      className="rounded-full border-gray-200"
+                    />
+                  </div>
                 </div>
+              ))}
+
+              <div>
+                <label className="block mb-2 text-sm font-medium">
+                  Message or wish for the couple
+                </label>
+                <Textarea
+                  placeholder="Your message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="border-gray-200 min-h-24 rounded-lg"
+                />
               </div>
-            ))}
 
-            <div>
-              <label className="block mb-2 text-sm font-medium">
-                Message or wish for the couple
-              </label>
-              <Textarea
-                placeholder="Your message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="border-gray-200 min-h-24 rounded-lg"
-              />
-            </div>
+              <div className="flex flex-col gap-4 pt-2">
+                {guests.length < 2 && (
+                  <Button
+                    type="button"
+                    onClick={addGuest}
+                    variant="outline"
+                    className="rounded-full border-[#f3bdaf] text-gray-700 hover:bg-pink-50"
+                  >
+                    Add +1 guest
+                  </Button>
+                )}
 
-            <div className="flex flex-col gap-4 pt-2">
-              <Button
-                type="button"
-                onClick={addGuest}
-                variant="outline"
-                className="rounded-full border-pink-200 text-gray-700 hover:bg-pink-50"
-              >
-                Add guest
-              </Button>
-
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="rounded-full bg-pink-200 hover:bg-pink-300 text-gray-800"
-              >
-                {isSubmitting ? "Submitting..." : "Submit RSVP"}
-              </Button>
-            </div>
-          </form>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="rounded-full bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800"
+                >
+                  {isSubmitting ? "Submitting..." : "Submit RSVP"}
+                </Button>
+              </div>
+            </form>
+          )}
         </div>
       </DialogContent>
     </Dialog>
