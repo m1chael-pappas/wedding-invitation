@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Koulen&family=Lustria&display=swap");
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-family: "Lustria", serif;
+  --text-color: #4b5563;
+  --color-custom: #f3bdaf;
 }
 
 @theme inline {
@@ -10,8 +14,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-koulen: "Koulen", sans-serif;
+  --font-lustria: "Lustria", serif;
+  --color-custom: var(--color-custom);
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -21,6 +27,24 @@
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+button,
+input,
+textarea,
+select,
+option {
+  font-family: inherit;
+  color: inherit;
 }
