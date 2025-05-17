@@ -2,11 +2,13 @@ import React from 'react';
 
 import Image from 'next/image';
 
+import RSVPForm from '@/components/ui/RSVPForm';
+
 const WeddingInvitation = () => {
   return (
-    <div className="flex flex-col items-center bg-white text-gray-800 min-h-screen">
+    <div className="flex  flex-col items-center bg-white text-gray-800 min-h-screen">
       {/* First section - Main invite with names and date */}
-      <div className="w-full flex flex-col items-center text-center px-8 py-12">
+      <div className="w-full max-w-5xl mx-auto  flex flex-col items-center text-center px-8 py-12">
         <div className="absolute top-4 right-4">
           <span className="inline-flex items-center">
             <span className="mr-2">🇦🇺</span>
@@ -25,7 +27,7 @@ const WeddingInvitation = () => {
           />
         </div>
 
-        <h1 className="text-3xl  font-lustria -tracking-tighter mt-8 mb-4 p-1">
+        <h1 className="text-3xl  font-lustria tracking-tighter mt-8 mb-4 p-1">
           MICHAEL & JEONGHA
         </h1>
         <h2 className="text-2xl font-lustria w-40  mb-8">20 FEB 2026</h2>
@@ -43,7 +45,7 @@ const WeddingInvitation = () => {
       </div>
 
       {/* Second section - Photo with venue and details */}
-      <div className="w-full relative">
+      <div className="w-full max-w-5xl mx-auto relative">
         <div className="w-full  bg-gray-200">
           {/* This would be replaced with an actual image */}
           <Image
@@ -70,7 +72,7 @@ const WeddingInvitation = () => {
       </div>
 
       {/* Third section - Announcement with couple details */}
-      <div className="w-full flex flex-col items-center px-8 py-12 bg-[url(/bgtext.jpg)]  text-gray-700 text-center">
+      <div className="w-full max-w-5xl mx-auto flex flex-col items-center px-8 py-12 bg-[url(/bgtext.jpg)]  text-gray-700 text-center">
         <div className="mb-6">
           <Image
             src="/ribbon.png"
@@ -147,7 +149,7 @@ const WeddingInvitation = () => {
         </div>
       </div>
       {/* Fourth section - Our Story */}
-      <div className="w-full flex flex-col items-center px-8 py-12">
+      <div className="w-full max-w-5xl mx-auto flex flex-col items-center px-8 py-12">
         <h2 className="text-2xl mb-10 text-center">Our story</h2>
 
         <div className="relative">
@@ -279,7 +281,7 @@ const WeddingInvitation = () => {
       </div>
 
       {/* About our wedding section */}
-      <div className="w-full max-w-lg mx-auto px-8 py-12 flex flex-col  items-center bg-[url(/bgtext.jpg)] relative">
+      <div className="w-full max-w-5xl mx-auto flex flex-col items-center px-8 py-12 bg-[url(/bgtext.jpg)] relative">
         {/* Decorative pocket watch */}
         <div className="absolute -top-14 right-3">
           <img src="/04_about_graphic.png" alt="about" />
@@ -312,9 +314,11 @@ const WeddingInvitation = () => {
 
         <p className="mb-8 text-center">
           We&apos;re so excited to share this special day with
-          <p>you in our own unique way: a blend of</p>
-          <p>our Korean, Greek, and Australian ways.</p>
-          Here&apos;s what you can expect:
+          <br />
+          you in our own unique way: a blend of
+          <br />
+          our Korean, Greek, and Australian ways. Here&apos;s what you can
+          expect:
         </p>
 
         {/* The Ceremony */}
@@ -364,9 +368,9 @@ const WeddingInvitation = () => {
       </div>
 
       {/* RSVP Section */}
-      <div className="w-full max-w-lg mx-auto px-8 py-12 flex flex-col items-center relative">
+      <div className="w-full max-w-5xl mx-auto px-8 py-12 flex flex-col items-center relative">
         {/* Envelope image at the top */}
-        <div className="absolute top-2 left-12 transform -translate-x-1/2">
+        <div className="absolute top-2 left-12 transform -translate-x-1/2 z-10">
           <img
             src="/05_RSVP_graphic1.png"
             alt="Envelope"
@@ -402,23 +406,111 @@ const WeddingInvitation = () => {
 
             {/* RSVP Button */}
             <div className="flex justify-center mt-10">
-              <a
-                href="#rsvp-form"
-                className="px-16 py-3 bg-[#f3bdaf] text-gray-800 rounded-full text-xl font-medium hover:bg-pink-300 transition-colors"
-              >
-                RSVP
-              </a>
+              <RSVPForm />
             </div>
           </div>
 
           {/* Quill and paper decoration */}
-          <div className="absolute -bottom-20 -right-15">
+          <div className="absolute -bottom-20 -right-19 z-10">
             <img
               src="/05_RSVP_graphic2.png"
               alt="Quill and paper"
               className="w-40 h-40"
             />
           </div>
+        </div>
+      </div>
+
+      {/* Getting There Section */}
+      <div className="w-full max-w-5xl mx-auto px-4 py-12 bg-[url(/bgtext.jpg)] relative border border-blue-200 rounded-md">
+        {/* Section heading with border */}
+        <div className="flex justify-center mb-8">
+          <h2 className="text-2xl font-medium text-center border border-blue-100 border-dashed px-8 py-2">
+            Getting there
+          </h2>
+        </div>
+
+        {/* Venue information */}
+        <div className="text-center mb-6">
+          <h3 className="text-xl font-medium mb-2">
+            Lauriston House Function Centre
+          </h3>
+          <p className="text-gray-400!">
+            146 Marsden Rd, Dundas Valley NSW 2117
+          </p>
+        </div>
+
+        {/* Map container */}
+        <div className="w-full h-64 bg-gray-200 mb-8 border border-gray-300">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6631.235659176057!2d151.06216007658986!3d-33.796365915312286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12a46953f78dfd%3A0xd2374006a24ca3e6!2sLauriston%20House%20Function%20Centre!5e0!3m2!1sen!2sau!4v1747473406762!5m2!1sen!2sau"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        {/* Public Transport */}
+        <div className="mb-6">
+          <h3 className="flex items-center text-lg font-medium mb-2">
+            <span className="mr-2">🚌</span> Public Transport
+          </h3>
+          <p className="ml-2 mb-1">Closest train station: Eastwood</p>
+          <p className="ml-2">From Eastwood, take Bus 545 (10 mins) or Uber</p>
+        </div>
+
+        {/* Parking */}
+        <div className="mb-6">
+          <h3 className="flex items-center text-lg font-medium mb-2">
+            <span className="mr-2">🚗</span> Parking
+          </h3>
+          <p className="ml-2 mb-1">
+            There is no parking on the venue grounds, but guests can be dropped
+            off.
+          </p>
+          <p className="ml-2 mb-1">Nearby parking spots are available.</p>
+          <p className="ml-2">See the parking map for details.</p>
+        </div>
+
+        {/* Chariot image */}
+        <div className="absolute -bottom-6 right-4">
+          <img src="/chariot.png" alt="Vintage Chariot" className="w-32 h-25" />
+        </div>
+      </div>
+
+      {/* Closing Signature Section */}
+      <div className="w-full max-w-5xl mx-auto bg-[url(/bgtext.jpg)] flex flex-col items-center border border-blue-200 rounded-md overflow-hidden">
+        {/* Signature heading */}
+        <div className="w-full px-8 py-10 flex flex-col items-center bg-white">
+          {/* With love text in dashed border */}
+          <div className=" px-6 py-3 mb-8">
+            <h2 className="text-2xl font-medium text-center">
+              With love,
+              <br />
+              Michael & Jenna
+            </h2>
+          </div>
+
+          {/* Monogram/signature */}
+          <div className=" px-6 py-3">
+            <img
+              src="/00_main_logo.png"
+              alt="Signature"
+              className="h-14 w-auto"
+            />
+          </div>
+        </div>
+
+        {/* Traditional attire photo */}
+        <div className="w-full">
+          <img
+            src="/07_end_picture.png"
+            alt="Michael and Jenna in traditional Korean attire"
+            className="w-full h-auto"
+          />
         </div>
       </div>
     </div>
