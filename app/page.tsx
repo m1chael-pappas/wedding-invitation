@@ -6,7 +6,7 @@ import RSVPForm from '@/components/ui/RSVPForm';
 
 const WeddingInvitation = () => {
   return (
-    <div className="flex  flex-col items-center bg-white text-gray-800 min-h-screen">
+    <div className="flex flex-col items-center bg-white text-gray-800 min-h-screen max-w-full overflow-x-hidden">
       {/* First section - Main invite with names and date */}
       <div className="w-full max-w-5xl mx-auto  flex flex-col items-center text-center px-8 py-12">
         <div className="absolute top-4 right-4">
@@ -33,7 +33,7 @@ const WeddingInvitation = () => {
         <h2 className="text-2xl font-lustria w-40  mb-8">20 FEB 2026</h2>
 
         {/* Decorative candles */}
-        <div className="flex justify-center mt-8 mb-4">
+        <div className="flex justify-center mt-8 ">
           <Image
             src="/candles.png"
             alt="Candles"
@@ -72,7 +72,7 @@ const WeddingInvitation = () => {
       </div>
 
       {/* Third section - Announcement with couple details */}
-      <div className="w-full max-w-5xl mx-auto flex flex-col items-center px-8 py-12 bg-[url(/bgtext.jpg)]  text-gray-700 text-center">
+      <div className="w-full max-w-5xl mx-auto flex flex-col items-center px-8 py-10 bg-[url(/bgtext.jpg)]  text-gray-700 text-center">
         <div className="mb-6">
           <Image
             src="/ribbon.png"
@@ -422,7 +422,7 @@ const WeddingInvitation = () => {
       </div>
 
       {/* Getting There Section */}
-      <div className="w-full max-w-5xl mx-auto px-4 py-12 bg-[url(/bgtext.jpg)] relative border border-blue-200 rounded-md">
+      <div className="w-full max-w-5xl mx-auto px-4 py-12 bg-[url(/bgtext.jpg)] relative border  rounded-md">
         {/* Section heading with border */}
         <div className="flex justify-center mb-8">
           <h2 className="text-2xl font-medium text-center border border-blue-100 border-dashed px-8 py-2">
@@ -482,7 +482,7 @@ const WeddingInvitation = () => {
       </div>
 
       {/* Closing Signature Section */}
-      <div className="w-full max-w-5xl mx-auto bg-[url(/bgtext.jpg)] flex flex-col items-center border border-blue-200 rounded-md overflow-hidden">
+      <div className="w-full max-w-5xl mx-auto bg-[url(/bgtext.jpg)] flex flex-col items-center   rounded-md overflow-hidden">
         {/* Signature heading */}
         <div className="w-full px-8 py-10 flex flex-col items-center bg-white">
           {/* With love text in dashed border */}
