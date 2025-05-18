@@ -71,7 +71,7 @@ const WeddingInvitation = () => {
             <div className="w-full  bg-gray-200">
               {/* This would be replaced with an actual image */}
               <Image
-                src="/couple.png"
+                src="/wedding_bg.png"
                 alt="couple"
                 width={1000}
                 height={1000}
