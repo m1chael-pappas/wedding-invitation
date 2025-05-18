@@ -50,6 +50,24 @@ export interface RSVP {
   title: string;
   honorMessage: string;
   seatingMessage: string;
+  form: {
+    button: string;
+    modalTitle: string;
+    eventDetails: string;
+    venue: string;
+    guestLabel: string;
+    fullNamePlaceholder: string;
+    dietaryPlaceholder: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    addGuestButton: string;
+    submitButton: string;
+    submittingButton: string;
+    successMessage: string;
+    successSubMessage: string;
+    errorMessage: string;
+    closeButton: string;
+  };
 }
 
 export interface TransportInfo {
@@ -108,6 +126,6 @@ export interface Translation {
 
 export interface Translations {
   en: Translation;
-  ko?: Translation; // Optional until you add Korean translations
-  gr?: Translation; // Optional until you add Greek translations
+  ko: Translation;
+  el: Translation;
 }

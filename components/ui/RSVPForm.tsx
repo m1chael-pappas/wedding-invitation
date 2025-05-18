@@ -1,24 +1,47 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 interface Guest {
   name: string;
   dietary: string;
 }
 
-const RSVPForm: React.FC = () => {
+interface RSVPTranslations {
+  button: string;
+  modalTitle: string;
+  eventDetails: string;
+  venue: string;
+  guestLabel: string;
+  fullNamePlaceholder: string;
+  dietaryPlaceholder: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  addGuestButton: string;
+  submitButton: string;
+  submittingButton: string;
+  successMessage: string;
+  successSubMessage: string;
+  errorMessage: string;
+  closeButton: string;
+}
+
+interface RSVPFormProps {
+  translations: RSVPTranslations;
+}
+
+const RSVPForm: React.FC<RSVPFormProps> = ({ translations }) => {
   const [guests, setGuests] = useState<Guest[]>([{ name: "", dietary: "" }]);
   const [message, setMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -63,47 +86,46 @@ const RSVPForm: React.FC = () => {
       }
 
       // Show success message
-      setSubmitStatus("Thank you for your RSVP!");
+      setSubmitStatus("success");
 
       // Reset form fields only, but keep the dialog open with the success message
       setGuests([{ name: "", dietary: "" }]);
       setMessage("");
     } catch (error) {
       console.error("Error submitting RSVP:", error);
-      setSubmitStatus(
-        "Something went wrong. Please try again or contact us directly."
-      );
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
   };
+
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <Button className="px-16 py-6 bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800 rounded-full text-xl">
-          RSVP
+          {translations.button}
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-md p-0 bg-white rounded-lg">
         <div className="p-6">
           <DialogHeader className="mb-4 relative">
             <DialogTitle className="text-center text-xl font-medium">
-              RSVP
+              {translations.modalTitle}
             </DialogTitle>
           </DialogHeader>
 
           <div className="border-t border-b py-4 my-4 text-center">
-            <p className="font-medium">Friday, 20th February 2026 at 6:00 PM</p>
-            <p>Lauriston House, Sydney</p>
+            <p className="font-medium">{translations.eventDetails}</p>
+            <p>{translations.venue}</p>
           </div>
 
-          {submitStatus ? (
+          {submitStatus === "success" ? (
             <div className="py-10 text-center">
               <p className="text-xl font-medium text-green-600">
-                {submitStatus}
+                {translations.successMessage}
               </p>
               <p className="mt-4 text-gray-600">
-                We look forward to celebrating with you!
+                {translations.successSubMessage}
               </p>
               <Button
                 onClick={() => {
@@ -112,54 +134,66 @@ const RSVPForm: React.FC = () => {
                 }}
                 className="mt-6 rounded-full bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800"
               >
-                Close
+                {translations.closeButton}
               </Button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {submitStatus === "error" && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-red-600 text-sm">
+                    {translations.errorMessage}
+                  </p>
+                </div>
+              )}
+
               {guests.map((guest, index) => (
-                <div key={index} className="space-y-4">
-                  <div>
-                    {index === 0 && (
-                      <label className="block mb-2 text-sm font-medium">
-                        *Please provide your full name
-                      </label>
-                    )}
-                    <Input
-                      placeholder="Full name"
-                      value={guest.name}
-                      onChange={(e) =>
-                        updateGuest(index, "name", e.target.value)
-                      }
-                      required={index === 0}
-                      className="rounded-full border-gray-200"
-                    />
+                <div key={index}>
+                  {/* Add divider before Guest 2 */}
+                  {index === 1 && (
+                    <div className="border-t border-gray-200 pt-4 mb-4"></div>
+                  )}
+
+                  {/* Guest header */}
+                  <div className="mb-4">
+                    <h3 className="text-lg font-medium text-gray-800">
+                      {translations.guestLabel} {index + 1}
+                    </h3>
                   </div>
 
-                  <div>
-                    {index === 0 && (
-                      <label className="block mb-2 text-sm font-medium">
-                        Dietary preference or restrictions
-                      </label>
-                    )}
-                    <Input
-                      placeholder="Dietary preferences"
-                      value={guest.dietary}
-                      onChange={(e) =>
-                        updateGuest(index, "dietary", e.target.value)
-                      }
-                      className="rounded-full border-gray-200"
-                    />
+                  <div className="space-y-4">
+                    <div>
+                      <Input
+                        placeholder={translations.fullNamePlaceholder}
+                        value={guest.name}
+                        onChange={(e) =>
+                          updateGuest(index, "name", e.target.value)
+                        }
+                        required={index === 0}
+                        className="rounded-full border-gray-200"
+                      />
+                    </div>
+
+                    <div>
+                      <Input
+                        placeholder={translations.dietaryPlaceholder}
+                        value={guest.dietary}
+                        onChange={(e) =>
+                          updateGuest(index, "dietary", e.target.value)
+                        }
+                        className="rounded-full border-gray-200"
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
 
               <div>
                 <label className="block mb-2 text-sm font-medium">
-                  Message or wish for the couple
+                  {translations.messageLabel}
                 </label>
                 <Textarea
-                  placeholder="Your message"
+                  placeholder={translations.messagePlaceholder}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="border-gray-200 min-h-24 rounded-lg"
@@ -174,7 +208,7 @@ const RSVPForm: React.FC = () => {
                     variant="outline"
                     className="rounded-full border-[#f3bdaf] text-gray-700 hover:bg-pink-50"
                   >
-                    Add +1 guest
+                    {translations.addGuestButton}
                   </Button>
                 )}
 
@@ -183,7 +217,9 @@ const RSVPForm: React.FC = () => {
                   disabled={isSubmitting}
                   className="rounded-full bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800"
                 >
-                  {isSubmitting ? "Submitting..." : "Submit RSVP"}
+                  {isSubmitting
+                    ? translations.submittingButton
+                    : translations.submitButton}
                 </Button>
               </div>
             </form>
