@@ -1,7 +1,8 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 
+import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import {
   Parallax,
@@ -12,19 +13,77 @@ import {
   AnimatedText,
   FadeInSection,
 } from '@/components/ui/animation-components';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import RSVPForm from '@/components/ui/RSVPForm';
 
+import translationsData from '../lib/translations.json';
+import { Translations } from './types/translations';
+
+const translations = translationsData as Translations;
+
+const languageOptions = [
+  { code: "en", name: "English", flag: "🇦🇺" },
+  { code: "ko", name: "한국어", flag: "🇰🇷" },
+  { code: "el", name: "Ελληνικά", flag: "🇬🇷" },
+];
+
 const WeddingInvitation = () => {
+  const [currentLanguage, setCurrentLanguage] = useState("en");
+  const t = translations[currentLanguage as keyof typeof translations];
+
+  if (!t) {
+    return <div>Language not supported</div>;
+  }
+
+  const handleLanguageChange = (languageCode: string) => {
+    setCurrentLanguage(languageCode);
+  };
+
+  const currentLanguageOption = languageOptions.find(
+    (lang) => lang.code === currentLanguage
+  );
+
   return (
     <ParallaxProvider>
       <div className="flex flex-col items-center bg-white text-gray-800 min-h-screen max-w-full overflow-x-hidden">
         {/* First section - Main invite with names and date */}
         <div className="w-full max-w-5xl mx-auto bg-zinc-50 flex flex-col items-center text-center px-3 py-12">
           <div className="absolute top-4 right-4">
-            <span className="inline-flex items-center">
-              <span className="mr-2">🇦🇺</span>
-              English
-            </span>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-white/80"
+                >
+                  <span className="text-xl">{currentLanguageOption?.flag}</span>
+                  <span className="font-medium">
+                    {currentLanguageOption?.name}
+                  </span>
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                {languageOptions.map((language) => (
+                  <DropdownMenuItem
+                    key={language.code}
+                    onClick={() => handleLanguageChange(language.code)}
+                    className="flex items-center gap-3 cursor-pointer"
+                  >
+                    <span className="text-xl">{language.flag}</span>
+                    <span className="font-medium">{language.name}</span>
+                    {currentLanguage === language.code && (
+                      <span className="ml-auto text-blue-600">✓</span>
+                    )}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           <FadeInSection direction="down" delay={1}>
@@ -42,7 +101,7 @@ const WeddingInvitation = () => {
           <div className="w-full flex justify-center overflow-hidden">
             <div className="whitespace-nowrap min-w-max overflow-x-auto pb-2">
               <AnimatedText
-                text="MICHALI & JEONGHA"
+                text={t.coupleNames}
                 className="text-5xl xs:text-5xl sm:text-5xl md:text-6xl font-koulen! tracking-tighter mt-8 mb-4 p-1"
                 delay={1}
               />
@@ -50,7 +109,7 @@ const WeddingInvitation = () => {
           </div>
 
           <AnimatedText
-            text="20 FEB 2026"
+            text={t.weddingDate}
             className="text-4xl font-koulen! w-fit  mb-8 "
             delay={1}
           />
@@ -63,7 +122,7 @@ const WeddingInvitation = () => {
                 alt="Candles"
                 width={600}
                 height={600}
-                className="w-70 h-100 ml-50"
+                className="w-70 h-100 ml-30"
               />
             </div>
           </FadeInSection>
@@ -88,16 +147,16 @@ const WeddingInvitation = () => {
             <FadeInSection direction="up" delay={0.3}>
               <div className="bg-[url(/textbox.png)] p-10 w-80 h-60 md:w-96 md:h-72 lg:w-[30rem] lg:h-80 xl:w-[42rem] xl:h-90 mt-80 text-center">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black font-lustria mb-2 text-gray-700 text-nowrap">
-                  Lauriston House
+                  {t.venueName}
                 </h2>
                 <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black font-lustria mb-4 text-gray-700">
-                  Sydney
+                  {t.venueCity}
                 </h3>
                 <p className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-lustria mb-1">
-                  20th February 2026
+                  {t.venueFullDate}
                 </p>
                 <p className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-lustria mb-1">
-                  Friday, 6:00 PM
+                  {t.venueTime}
                 </p>
               </div>
             </FadeInSection>
@@ -120,19 +179,13 @@ const WeddingInvitation = () => {
 
           <FadeInSection delay={0.3}>
             <h2 className="text-4xl font-black font-lustria mb-15">
-              We are getting married!
+              {t.weddingAnnouncement}
             </h2>
           </FadeInSection>
 
           <FadeInSection delay={0.4}>
-            <p className="text-xl mb-3 font-lustria">
-              Please come celebrate this special moment with us as we begin a
-              new chapter together.
-            </p>
-            <p className="text-xl mb-18 font-lustria">
-              Even if distance keeps us apart, your love and warm wishes mean
-              the world to us.
-            </p>
+            <p className="text-xl mb-3 font-lustria">{t.celebrationMessage}</p>
+            <p className="text-xl mb-18 font-lustria">{t.distanceMessage}</p>
           </FadeInSection>
 
           <div className="grid grid-cols-2 gap-8 w-full  text-gray-700 max-w-md mt-4">
@@ -149,15 +202,19 @@ const WeddingInvitation = () => {
                   />
                 </div>
                 <h3 className="text-xl font-lustria text-gray-400!">
-                  The Groom
+                  {t.groomSection.title}
                 </h3>
-                <p className="text-3xl  mb-3 font-lustria md:whitespace-nowrap">
-                  Michael Pappas
+                <p className="text-3xl  mb-3 font-lustria whitespace-nowrap">
+                  {t.groomSection.name}
                 </p>
-                <p className="text-xl font-lustria mt-5">From Greece</p>
-                <p className="text-xl font-lustria">Software developer</p>
-                <p className="text-xl font-lustria">MBTI</p>
-                <p className="text-xl font-lustria">Sagittarius</p>
+                <p className="text-xl font-lustria mt-5">
+                  {t.groomSection.origin}
+                </p>
+                <p className="text-xl font-lustria">
+                  {t.groomSection.profession}
+                </p>
+                <p className="text-xl font-lustria">{t.groomSection.mbti}</p>
+                <p className="text-xl font-lustria">{t.groomSection.zodiac}</p>
               </div>
             </FadeInSection>
 
@@ -174,13 +231,19 @@ const WeddingInvitation = () => {
                   />
                 </div>
                 <h3 className="text-xl text-gray-400! font-lustria">
-                  The Bride
+                  {t.brideSection.title}
                 </h3>
-                <p className="text-3xl mb-3 font-lustria">Jeongha Lee</p>
-                <p className="text-xl font-lustria mt-5">From Korea</p>
-                <p className="text-xl font-lustria">UX Designer</p>
-                <p className="text-xl font-lustria">MBTI</p>
-                <p className="text-xl font-lustria">Aries</p>
+                <p className="text-3xl mb-3 font-lustria">
+                  {t.brideSection.name}
+                </p>
+                <p className="text-xl font-lustria mt-5">
+                  {t.brideSection.origin}
+                </p>
+                <p className="text-xl font-lustria">
+                  {t.brideSection.profession}
+                </p>
+                <p className="text-xl font-lustria">{t.brideSection.mbti}</p>
+                <p className="text-xl font-lustria">{t.brideSection.zodiac}</p>
               </div>
             </FadeInSection>
           </div>
@@ -188,18 +251,18 @@ const WeddingInvitation = () => {
           <FadeInSection direction="up" delay={0.7}>
             <div className="flex flex-col items-center text-xl mt-15">
               <AnimatedText
-                text="From two stories to one -"
+                text={t.fromTwoStoriesToOne}
                 className="font-lustria"
                 delay={0.1}
               />
               <AnimatedText
-                text="This is our shared chapter"
+                text={t.sharedChapter}
                 className="font-lustria"
                 delay={0.2}
               />
               <AnimatedText
-                text="And our little cat, Dot, is joining our journey as well"
-                className="font-lustria"
+                text={t.dotJoining}
+                className="font-lustria pt-5 max-w-52 text-wrap"
                 delay={0.3}
               />
               <Image
@@ -215,7 +278,7 @@ const WeddingInvitation = () => {
         {/* Fourth section - Our Story */}
         <div className="w-full max-w-5xl mx-auto bg-zinc-50 flex flex-col items-center px-8 py-12">
           <FadeInSection delay={0.2}>
-            <h2 className="text-3xl mb-10 text-center">Our story</h2>
+            <h2 className="text-3xl mb-10 text-center">{t.ourStory}</h2>
           </FadeInSection>
 
           <div className="relative">
@@ -242,8 +305,8 @@ const WeddingInvitation = () => {
                     <div className="w-3 h-3 rounded-full bg-gray-500"></div>
                   </div>
                   <div className="w-1/2 pl-8 text-xl">
-                    <p className=" mb-3">2021.11</p>
-                    <p>We met in Sydney as the world slowly reopened.</p>
+                    <p className=" mb-3">{t.timelineEvents[2021].date}</p>
+                    <p>{t.timelineEvents[2021].description}</p>
                   </div>
                 </div>
               </FadeInSection>
@@ -252,11 +315,8 @@ const WeddingInvitation = () => {
               <FadeInSection delay={0.4} direction="up">
                 <div className="flex items-center">
                   <div className="w-1/2 pr-8 text-right text-xl">
-                    <p className=" mb-3">2022.09</p>
-                    <p>
-                      We traveled to Greece, and shortly after, we moved in
-                      together.
-                    </p>
+                    <p className=" mb-3">{t.timelineEvents[2022].date}</p>
+                    <p>{t.timelineEvents[2022].description}</p>
                   </div>
                   <div className="flex flex-col items-center z-10">
                     <div className="w-3 h-3 rounded-full bg-gray-500"></div>
@@ -293,8 +353,8 @@ const WeddingInvitation = () => {
                     <div className="w-3 h-3 rounded-full bg-gray-500"></div>
                   </div>
                   <div className="w-1/2 pl-8 text-xl">
-                    <p className=" mb-3">2023.07</p>
-                    <p>We decided to buy our first home.</p>
+                    <p className=" mb-3">{t.timelineEvents[2023].date}</p>
+                    <p>{t.timelineEvents[2023].description}</p>
                   </div>
                 </div>
               </FadeInSection>
@@ -303,11 +363,11 @@ const WeddingInvitation = () => {
               <FadeInSection delay={0.6} direction="up">
                 <div className="flex items-center">
                   <div className="w-1/2 pr-8 text-right text-xl">
-                    <p className="mb-3">2024.05</p>
+                    <p className="mb-3">{t.timelineEvents[2024].date}</p>
                     <p>
-                      We got engaged with full hearts and shared dreams.{" "}
+                      {t.timelineEvents[2024].description}{" "}
                       <span className="inline-flex items-center">
-                        (and{" "}
+                        ({t.dotJoinedText}{" "}
                         <Image
                           src="/dot_face.png"
                           alt="Dot"
@@ -315,7 +375,7 @@ const WeddingInvitation = () => {
                           height={500}
                           className="w-4 h-4 mx-1 inline-block"
                         />{" "}
-                        joined)
+                        {t.dotJoinedTextEnd})
                       </span>
                     </p>
                   </div>
@@ -353,12 +413,9 @@ const WeddingInvitation = () => {
                   <div className="flex flex-col items-center z-10">
                     <div className="w-3 h-3 rounded-full bg-gray-500"></div>
                   </div>
-                  <div className="w-1/2 pl-8 text-xl">
-                    <p className="mb-3">2026.02</p>
-                    <p>
-                      We&lsquo;re Getting Married - and can&apos;t wait to
-                      celebrate with you.
-                    </p>
+                  <div className="w-1/2 pl-8 pb-7 text-xl">
+                    <p className="mb-3">{t.timelineEvents[2026].date}</p>
+                    <p>{t.timelineEvents[2026].description}</p>
                   </div>
                 </div>
               </FadeInSection>
@@ -378,15 +435,13 @@ const WeddingInvitation = () => {
           {/* Section heading */}
           <FadeInSection delay={0.2}>
             <h2 className="text-3xl font-black mt-15 mb-12 pb-1 inline-block">
-              About our wedding
+              {t.aboutWedding.title}
             </h2>
           </FadeInSection>
 
           <FadeInSection delay={0.3}>
             <p className="mb-8 text-xl text-center">
-              We&apos;re so excited to share this special day with you in our
-              own unique way: a blend of our Korean, Greek, and Australian ways.
-              Here&apos;s what you can expect:
+              {t.aboutWedding.description}
             </p>
           </FadeInSection>
 
@@ -395,12 +450,12 @@ const WeddingInvitation = () => {
             <div className="w-full mb-8 flex flex-col items-center text-center">
               <h3 className="flex items-center font-black mb-6">
                 <span className="mr-1 ">💍</span>
-                The Ceremony
+                {t.aboutWedding.ceremony.title}
               </h3>
               <p className="text-xl">
-                The ceremony will begin at 6:00 PM in the garden
+                {t.aboutWedding.ceremony.description}
                 <br />
-                (Or inside the venue if it rains)
+                {t.aboutWedding.ceremony.rainPlan}
               </p>
             </div>
           </FadeInSection>
@@ -410,11 +465,9 @@ const WeddingInvitation = () => {
             <div className="w-full mb-8 flex flex-col items-center text-center">
               <h3 className=" flex font-black items-center mb-6">
                 <span className="mr-1">👗</span>
-                Dress Code
+                {t.aboutWedding.dressCode.title}
               </h3>
-              <p className="text-xl">
-                We&apos;d love for you to join us in cocktail attire
-              </p>
+              <p className="text-xl">{t.aboutWedding.dressCode.description}</p>
             </div>
           </FadeInSection>
 
@@ -423,14 +476,11 @@ const WeddingInvitation = () => {
             <div className="w-full mb-8 flex flex-col items-center text-center">
               <h3 className="font-black flex items-center mb-6">
                 <span className="mr-1">🍰</span>
-                The Reception
+                {t.aboutWedding.reception.title}
               </h3>
               <p className="text-xl">
-                Following the ceremony, we&apos;ll move right into the reception
-                at the same venue.
-                <br /> There will be delicious food and drinks, followed by some
-                classic wedding moments such as cake cutting, speeches and, of
-                course, a time to dance and enjoy music with us!
+                {t.aboutWedding.reception.description}
+                <br /> {t.aboutWedding.reception.activities}
               </p>
             </div>
           </FadeInSection>
@@ -457,24 +507,17 @@ const WeddingInvitation = () => {
               {/* Heading with border */}
               <div className="flex justify-center mb-10">
                 <h2 className="text-3xl font-medium text-center px-4 py-2">
-                  Will You Be Joining Us?
+                  {t.rsvp.title}
                 </h2>
               </div>
 
               <div className="text-center text-xl space-y-8">
                 <FadeInSection delay={0.4}>
-                  <p>
-                    It would be our honour to have you with us on our wedding
-                    day.
-                  </p>
+                  <p>{t.rsvp.honorMessage}</p>
                 </FadeInSection>
 
                 <FadeInSection delay={0.5}>
-                  <p>
-                    As the ceremony will have assigned seating, please kindly
-                    let us know your attendance by 30 November 2025 through the
-                    RSVP form below.
-                  </p>
+                  <p>{t.rsvp.seatingMessage}</p>
                 </FadeInSection>
 
                 {/* RSVP Button */}
@@ -506,18 +549,16 @@ const WeddingInvitation = () => {
           {/* Section heading with border */}
           <div className="flex justify-center mb-8">
             <h2 className="text-2xl font-medium text-center border border-blue-100 border-dashed px-8 py-2">
-              Getting there
+              {t.gettingThere.title}
             </h2>
           </div>
 
           {/* Venue information */}
           <div className="text-center mb-6">
             <h3 className="text-2xl font-medium mb-2">
-              Lauriston House Function Centre
+              {t.gettingThere.venueFullName}
             </h3>
-            <p className="text-gray-400! text-xl">
-              146 Marsden Rd, Dundas Valley NSW 2117
-            </p>
+            <p className="text-gray-400! text-xl">{t.gettingThere.address}</p>
           </div>
 
           {/* Map container */}
@@ -536,25 +577,20 @@ const WeddingInvitation = () => {
           {/* Public Transport */}
           <div className="mb-6 text-xl">
             <h3 className="flex items-center text-2xl font-medium mb-2">
-              <span className="mr-2">🚌</span> Public Transport
+              <span className="mr-2">🚌</span> {t.gettingThere.transport.title}
             </h3>
-            <p className="ml-2 mb-1">Closest train station: Eastwood</p>
-            <p className="ml-2">
-              From Eastwood, take Bus 545 (10 mins) or Uber
-            </p>
+            <p className="ml-2 mb-1">{t.gettingThere.transport.station}</p>
+            <p className="ml-2">{t.gettingThere.transport.directions}</p>
           </div>
 
           {/* Parking */}
           <div className="mb-6 text-xl">
             <h3 className="flex items-center text-2xl font-medium mb-2">
-              <span className="mr-2">🚗</span> Parking
+              <span className="mr-2">🚗</span> {t.gettingThere.parking.title}
             </h3>
-            <p className="ml-2 mb-1">
-              There is no parking on the venue grounds, but guests can be
-              dropped off.
-            </p>
-            <p className="ml-2 mb-1">Nearby parking spots are available.</p>
-            <p className="ml-2">See the parking map for details.</p>
+            <p className="ml-2 mb-1">{t.gettingThere.parking.dropOff}</p>
+            <p className="ml-2 mb-1">{t.gettingThere.parking.nearby}</p>
+            <p className="ml-2">{t.gettingThere.parking.mapReference}</p>
           </div>
 
           {/* Chariot image */}
@@ -576,9 +612,9 @@ const WeddingInvitation = () => {
             {/* With love text in dashed border */}
             <div className=" px-6 py-3 mb-8">
               <h2 className="text-4xl font-medium text-center">
-                With love,
+                {t.closing.withLove}
                 <br />
-                Michael & Jenna
+                {t.closing.names}
               </h2>
             </div>
 

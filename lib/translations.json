@@ -1,0 +1,299 @@
+{
+    "en": {
+        "language": "English",
+        "coupleNames": "MICHALI & JEONGHA",
+        "weddingDate": "20 FEB 2026",
+        "venueName": "Lauriston House",
+        "venueCity": "Sydney",
+        "venueFullDate": "20th February 2026",
+        "venueTime": "Friday, 6:00 PM",
+        "weddingAnnouncement": "We are getting married!",
+        "celebrationMessage": "Please come celebrate this special moment with us as we begin a new chapter together.",
+        "distanceMessage": "Even if distance keeps us apart, your love and warm wishes mean the world to us.",
+        "fromTwoStoriesToOne": "From two stories to one -",
+        "sharedChapter": "This is our shared chapter",
+        "dotJoining": "And our little cat, Dot, is joining our journey as well",
+        "ourStory": "Our story",
+        "timelineEvents": {
+            "2021": {
+                "date": "2021.11",
+                "description": "We met in Sydney as the world slowly reopened."
+            },
+            "2022": {
+                "date": "2022.09",
+                "description": "We traveled to Greece, and shortly after, we moved in together."
+            },
+            "2023": {
+                "date": "2023.07",
+                "description": "We decided to buy our first home."
+            },
+            "2024": {
+                "date": "2024.05",
+                "description": "We got engaged with full hearts and shared dreams."
+            },
+            "2026": {
+                "date": "2026.02",
+                "description": "We're Getting Married - and can't wait to celebrate with you."
+            }
+        },
+        "dotJoinedText": "and",
+        "dotJoinedTextEnd": "joined",
+        "groomSection": {
+            "title": "The Groom",
+            "name": "Michael Pappas",
+            "origin": "From Greece",
+            "profession": "Software developer",
+            "mbti": "MBTI",
+            "zodiac": "Sagittarius"
+        },
+        "brideSection": {
+            "title": "The Bride",
+            "name": "Jeongha Lee",
+            "origin": "From Korea",
+            "profession": "UX Designer",
+            "mbti": "MBTI",
+            "zodiac": "Aries"
+        },
+        "aboutWedding": {
+            "title": "About our wedding",
+            "description": "We're so excited to share this special day with you in our own unique way: a blend of our Korean, Greek, and Australian ways. Here's what you can expect:",
+            "ceremony": {
+                "title": "The Ceremony",
+                "description": "The ceremony will begin at 6:00 PM in the garden",
+                "rainPlan": "(Or inside the venue if it rains)"
+            },
+            "dressCode": {
+                "title": "Dress Code",
+                "description": "We'd love for you to join us in cocktail attire"
+            },
+            "reception": {
+                "title": "The Reception",
+                "description": "Following the ceremony, we'll move right into the reception at the same venue.",
+                "activities": "There will be delicious food and drinks, followed by some classic wedding moments such as cake cutting, speeches and, of course, a time to dance and enjoy music with us!"
+            }
+        },
+        "rsvp": {
+            "title": "Will You Be Joining Us?",
+            "honorMessage": "It would be our honour to have you with us on our wedding day.",
+            "seatingMessage": "As the ceremony will have assigned seating, please kindly let us know your attendance by 30 November 2025 through the RSVP form below."
+        },
+        "gettingThere": {
+            "title": "Getting there",
+            "venueFullName": "Lauriston House Function Centre",
+            "address": "146 Marsden Rd, Dundas Valley NSW 2117",
+            "transport": {
+                "title": "Public Transport",
+                "station": "Closest train station: Eastwood",
+                "directions": "From Eastwood, take Bus 545 (10 mins) or Uber"
+            },
+            "parking": {
+                "title": "Parking",
+                "dropOff": "There is no parking on the venue grounds, but guests can be dropped off.",
+                "nearby": "Nearby parking spots are available.",
+                "mapReference": "See the parking map for details."
+            }
+        },
+        "closing": {
+            "withLove": "With love,",
+            "names": "Michael & Jenna"
+        }
+    },
+    "ko": {
+        "language": "Korean",
+        "coupleNames": "MICHALI & JEONGHA",
+        "weddingDate": "20 FEB 2026",
+        "venueName": "Lauriston House",
+        "venueCity": "Sydney",
+        "venueFullDate": "20th February 2026",
+        "venueTime": "Friday, 6:00 PM",
+        "weddingAnnouncement": "저희 결혼합니다",
+        "celebrationMessage": "저희의 새로운 시작을 함께 축하해 주세요.",
+        "distanceMessage": "멀리 떨어져 있어 참석이 어려우시더라도, 마음으로 축하해 주시면 진심으로 감사하겠습니다.",
+        "fromTwoStoriesToOne": "저희 둘이 만나,",
+        "sharedChapter": "이제 함께 우리의 이야기를 써 내려가려 합니다.",
+        "dotJoining": "(그리고 우리의 검은 고양이 도트도 함께요)",
+        "ourStory": "Our story",
+        "timelineEvents": {
+            "2021": {
+                "date": "2021.11",
+                "description": "코로나가 끝날 무렵, 저희는 시드니에서 처음 만났어요"
+            },
+            "2022": {
+                "date": "2022.09",
+                "description": "함께한 시간 속에서 우리의 인연은 더욱 깊어졌어요."
+            },
+            "2023": {
+                "date": "2023.07",
+                "description": "시드니에서 우리만의 첫 집을 가지기로 결심했어요"
+            },
+            "2024": {
+                "date": "2024.05",
+                "description": "깜짝 프로포즈로 우리는 미래를 약속했어요. "
+            },
+            "2026": {
+                "date": "2026.02",
+                "description": "저희는 이제 결혼해요. 저희의 시작을 함께 축하해주세요."
+            }
+        },
+        "dotJoinedText": "도트도",
+        "dotJoinedTextEnd": "함께하기 시작",
+        "groomSection": {
+            "title": "신랑",
+            "name": "파파스 마이클",
+            "origin": "그리스",
+            "profession": "개발자",
+            "mbti": "MBTI",
+            "zodiac": "궁수자리"
+        },
+        "brideSection": {
+            "title": "신부",
+            "name": "이정하",
+            "origin": "한국",
+            "profession": "UX 디자이너",
+            "mbti": "MBTI",
+            "zodiac": "양자리"
+        },
+        "aboutWedding": {
+            "title": "About our wedding",
+            "description": "저희는 이 특별한 날을 함께 나누게 되어 기뻐요. 결혼식은 한국, 그리스, 호주의 문화가 어우러진 저희만의 특별한 방식으로 준비했어요",
+            "ceremony": {
+                "title": "예식",
+                "description": "예식은 저녁 6시 야외 전원에서 진행됩니다.",
+                "rainPlan": "(우천시 실내에서 진행됩니다)"
+            },
+            "dressCode": {
+                "title": "드레스 코드",
+                "description": "Cocktail attire - 편안하면서도 깔끔하고 멋지게 입어주세요 (세미 정장, 칵테일 드레스 등)"
+            },
+            "reception": {
+                "title": "리셉션",
+                "description": "예식 후 같은 장소에서 리셉션이 있어요",
+                "activities": "맛있는 음식과 음료가 제공될 예정이며, 케이크 커팅, 축사 등 소중한 순간들과 함께 춤과 음악을 즐기는 시간이 마련되어 있어요."
+            }
+        },
+        "rsvp": {
+            "title": "Will You Be Joining Us?",
+            "honorMessage": "소중한 시간을 내어 결혼식에 참석해주시는 모든 분들께 감사드립니다.",
+            "seatingMessage": "예식과 리셉션은 지정좌석제로 진행되니 참석 여부를 2025년 11월 30일까지 회신해주시면 감사하겠습니다."
+        },
+        "gettingThere": {
+            "title": "Getting there",
+            "venueFullName": "Lauriston House Function Centre",
+            "address": "146 Marsden Rd, Dundas Valley NSW 2117",
+            "transport": {
+                "title": "대중교통",
+                "station": "가장 가까운 기차역: 이스트우드(Eastwood)",
+                "directions": "이스트우드 역에서 545번 버스 (10분) 혹은 우버"
+            },
+            "parking": {
+                "title": "자차 이용",
+                "dropOff": "",
+                "nearby": "주차는 근처에 안내해드리는 주차 공간에 해주세요",
+                "mapReference": "See the parking map for details."
+            }
+        },
+        "closing": {
+            "withLove": "With love,",
+            "names": "Michael & Jenna"
+        }
+    },
+    "el": {
+        "language": "Ελληνικά",
+        "coupleNames": "Μιχαήλ & Τζεόνγκα",
+        "weddingDate": "20 Φεβρουαρίου 2026",
+        "venueName": "Lauriston House",
+        "venueCity": "Σίδνεϊ",
+        "venueFullDate": "20 Φεβρουαρίου 2026",
+        "venueTime": "Παρασκευή, 6:00 μ.μ.",
+        "weddingAnnouncement": "Παντρευομαστε!",
+        "celebrationMessage": "Ελάτε να γιορτάσουμε αυτή τη μοναδική στιγμή καθώς ξεκινάμε ένα νέο κεφάλαιο μαζί.",
+        "distanceMessage": "Ακόμα κι αν η απόσταση μας χωρίζει, η αγάπη και οι θερμές ευχές σας σημαίνουν τα πάντα για εμάς.",
+        "fromTwoStoriesToOne": "Αυτό είναι το ταξίδι μας",
+        "sharedChapter": "από δύο ιστορίες σε μία ",
+        "dotJoining": "Και η μικρή μας γάτα, η Dot, συμμετέχει επίσης στο ταξίδι μας",
+        "ourStory": "Η ιστορία μας",
+        "timelineEvents": {
+            "2021": {
+                "date": "2021.11",
+                "description": "Γνωριστήκαμε στο Σίδνεϊ καθώς ο κόσμος άνοιγε αργά ξανά."
+            },
+            "2022": {
+                "date": "2022.09",
+                "description": "Ταξιδέψαμε στην Ελλάδα, και λίγο μετά, μετακομίσαμε μαζί."
+            },
+            "2023": {
+                "date": "2023.07",
+                "description": "Αποφασίσαμε να αγοράσουμε το πρώτο μας σπίτι."
+            },
+            "2024": {
+                "date": "2024.05",
+                "description": "Αρραβωνιαστήκαμε με γεμάτες καρδιές και κοινά όνειρα."
+            },
+            "2026": {
+                "date": "2026.02",
+                "description": "Παντρευομαστε και ανυπομονούμε να το γιορτάσουμε μαζί σας."
+            }
+        },
+        "dotJoinedText": "και η",
+        "dotJoinedTextEnd": "μαζι",
+        "groomSection": {
+            "title": "Ο Γαμπρός",
+            "name": "Μιχαήλ Παππάς",
+            "origin": "Από την Ελλάδα",
+            "profession": "Προγραμματιστής",
+            "mbti": "MBTI",
+            "zodiac": "Τοξότης"
+        },
+        "brideSection": {
+            "title": "Η Νύφη",
+            "name": "Τζεόνγκα Λι",
+            "origin": "Από την Κορέα",
+            "profession": "UX Σχεδιάστρια",
+            "mbti": "MBTI",
+            "zodiac": "Κριός"
+        },
+        "aboutWedding": {
+            "title": "Σχετικά με το γάμο μας",
+            "description": "Είμαστε τόσο ενθουσιασμένοι να μοιραστούμε αυτή την ξεχωριστή μέρα μαζί σας με τον δικό μας μοναδικό τρόπο: ένα μείγμα από τις κορεατικές, ελληνικές και αυστραλιανές μας παραδόσεις. Εδυ τι μπορείτε να περιμένετε:",
+            "ceremony": {
+                "title": "Η Τελετή",
+                "description": "Η τελετή θα ξεκινήσει στις 6:00 μ.μ. στον κήπο",
+                "rainPlan": "(Ή μέσα στον χώρο αν βρέχει)"
+            },
+            "dressCode": {
+                "title": "Ντύσιμο",
+                "description": "Θα θέλαμε να μας συνοδεύσετε σε κοκτέιλ ντύσιμο"
+            },
+            "reception": {
+                "title": "Η Δεξίωση",
+                "description": "Μετά την τελετή, θα προχωρήσουμε απευθείας στη δεξίωση στον ίδιο χώρο.",
+                "activities": "Θα υπάρχει νόστιμο φαγητό και ποτά, ακολουθημένα από κλασικές στιγμές γάμου όπως κόψιμο της τούρτας, ομιλίες και, φυσικά, ώρα για χορό και απόλαυση μουσικής μαζί μας!"
+            }
+        },
+        "rsvp": {
+            "title": "RSVP",
+            "honorMessage": "Θα ήταν τιμή μας να σας έχουμε μαζί μας στην ημέρα του γάμου μας.",
+            "seatingMessage": "Καθώς η τελετή θα έχει καθορισμένες θέσεις, παρακαλούμε ενημερώστε μας για την παρουσία σας μέχρι τις 30 Νοεμβρίου 2025 μέσω της φόρμας RSVP παρακάτω."
+        },
+        "gettingThere": {
+            "title": "Πώς να φτάσετε",
+            "venueFullName": "Κέντρο Εκδηλώσεων Lauriston House",
+            "address": "146 Marsden Rd, Dundas Valley NSW 2117",
+            "transport": {
+                "title": "Δημόσια Μεταφορά",
+                "station": "Πλησιέστερος σταθμός τρένου: Eastwood",
+                "directions": "Από το Eastwood, πάρτε το λεωφορείο 545 (10 λεπτά) ή Uber"
+            },
+            "parking": {
+                "title": "Στάθμευση",
+                "dropOff": "Δεν υπάρχει στάθμευση στους χώρους του venue, αλλά οι καλεσμένοι μπορούν να αφεθούν.",
+                "nearby": "Κοντινές θέσεις στάθμευσης είναι διαθέσιμες.",
+                "mapReference": "Δείτε τον χάρτη στάθμευσης για λεπτομέρειες."
+            }
+        },
+        "closing": {
+            "withLove": "Με αγάπη,",
+            "names": "Μιχαήλ & Τζεόνγκα"
+        }
+    }
+}
