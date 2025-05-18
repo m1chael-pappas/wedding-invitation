@@ -87,7 +87,7 @@ const WeddingInvitation = () => {
           <div className="absolute inset-0 flex items-center justify-center">
             <FadeInSection direction="up" delay={0.3}>
               <div className="bg-[url(/textbox.png)] p-10 w-80 h-60 md:w-96 md:h-72 lg:w-[30rem] lg:h-80 xl:w-[42rem] xl:h-90 mt-80 text-center">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black font-lustria mb-2 text-gray-700">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black font-lustria mb-2 text-gray-700 text-nowrap">
                   Lauriston House
                 </h2>
                 <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black font-lustria mb-4 text-gray-700">
