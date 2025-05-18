@@ -57,7 +57,7 @@ export const AnimatedText = ({
               transition: {
                 delay: delay + index * staggerChildren,
                 duration: duration,
-                ease: [0.2, 0.65, 0.3, 0.9],
+                ease: [0.25, 0.1, 0.25, 1],
               },
             },
           }}
@@ -110,9 +110,9 @@ export const FadeInSection = ({
               y: 0,
               x: 0,
               transition: {
-                duration: 0.8,
+                duration: 1.2,
                 delay: delay,
-                ease: [0.2, 0.65, 0.3, 0.9],
+                ease: [0.25, 0.1, 0.25, 1],
               },
             }
           : { opacity: 0, y: yOffset(), x: xOffset() }
