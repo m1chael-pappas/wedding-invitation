@@ -85,6 +85,10 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+.font-nanum-myeongjo {
+  font-family: var(--font-nanum-myeongjo);
+}
+
 body {
   color: var(--text-color);
   font-family: var(--font-family);

@@ -5,6 +5,7 @@ import {
   Geist,
   Geist_Mono,
   Koulen,
+  Nanum_Myeongjo,
 } from 'next/font/google';
 
 const geistSans = Geist({
@@ -16,10 +17,17 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
 const koulen = Koulen({
   variable: "--font-koulen",
   subsets: ["latin"],
   weight: "400",
+});
+
+const nanumMyeongjo = Nanum_Myeongjo({
+  variable: "--font-nanum-myeongjo",
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -35,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${koulen.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${koulen.variable} ${nanumMyeongjo.variable} antialiased`}
       >
         {children}
       </body>

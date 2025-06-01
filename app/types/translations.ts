@@ -83,12 +83,19 @@ export interface ParkingInfo {
   mapReference: string;
 }
 
+interface ParkingLocationInfo {
+  name: string;
+  distance: string;
+  address: string;
+}
 export interface GettingThere {
   title: string;
   venueFullName: string;
   address: string;
   transport: TransportInfo;
   parking: ParkingInfo;
+  parkingLocationTitle: string;
+  parkingLocations: ParkingLocationInfo[];
 }
 
 export interface Closing {
