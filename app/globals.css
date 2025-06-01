@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Koulen&family=Lustria&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Koulen&family=Lustria&family=Yeon+Sung&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -85,8 +85,8 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-.font-nanum-myeongjo {
-  font-family: var(--font-nanum-myeongjo);
+.font-yeon-sung {
+  font-family: var(--font-yeon-sung), serif;
 }
 
 body {

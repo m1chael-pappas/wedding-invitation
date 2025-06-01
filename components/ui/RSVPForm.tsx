@@ -1,17 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { getFontClass } from '@/lib/utils';
 
 interface Guest {
   name: string;
@@ -39,9 +40,10 @@ interface RSVPTranslations {
 
 interface RSVPFormProps {
   translations: RSVPTranslations;
+  language?: string;
 }
 
-const RSVPForm: React.FC<RSVPFormProps> = ({ translations }) => {
+const RSVPForm: React.FC<RSVPFormProps> = ({ translations, language }) => {
   const [guests, setGuests] = useState<Guest[]>([{ name: "", dietary: "" }]);
   const [message, setMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -85,10 +87,8 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ translations }) => {
         throw new Error(result.error || "Server error");
       }
 
-      // Show success message
       setSubmitStatus("success");
 
-      // Reset form fields only, but keep the dialog open with the success message
       setGuests([{ name: "", dietary: "" }]);
       setMessage("");
     } catch (error) {
@@ -98,33 +98,66 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ translations }) => {
       setIsSubmitting(false);
     }
   };
+  console.log("language", language);
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <Button className="px-16 py-6 bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800 rounded-full text-xl">
+        <Button
+          className={`px-16 py-6 bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800 rounded-full text-xl ${getFontClass(
+            language ?? "en",
+            "font-lustria"
+          )}`}
+        >
           {translations.button}
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-md p-0 bg-white rounded-lg">
         <div className="p-6">
           <DialogHeader className="mb-4 relative">
-            <DialogTitle className="text-center text-xl font-medium">
+            <DialogTitle
+              className={`text-center text-xl font-medium ${getFontClass(
+                language ?? "en",
+                "font-lustria"
+              )}`}
+            >
               {translations.modalTitle}
             </DialogTitle>
           </DialogHeader>
 
-          <div className="border-t border-b py-4 my-4 text-center">
-            <p className="font-medium">{translations.eventDetails}</p>
+          <div
+            className={`border-t border-b py-4 my-4 text-center ${getFontClass(
+              language ?? "en",
+              "font-lustria"
+            )}`}
+          >
+            <p
+              className={`font-medium ${getFontClass(
+                language ?? "en",
+                "font-lustria"
+              )}`}
+            >
+              {translations.eventDetails}
+            </p>
             <p>{translations.venue}</p>
           </div>
 
           {submitStatus === "success" ? (
             <div className="py-10 text-center">
-              <p className="text-xl font-medium text-green-600">
+              <p
+                className={`text-xl font-medium text-green-600 ${getFontClass(
+                  language ?? "en",
+                  "font-lustria"
+                )}`}
+              >
                 {translations.successMessage}
               </p>
-              <p className="mt-4 text-gray-600">
+              <p
+                className={`mt-4 text-gray-600 ${getFontClass(
+                  language ?? "en",
+                  "font-lustria"
+                )}`}
+              >
                 {translations.successSubMessage}
               </p>
               <Button
@@ -132,7 +165,10 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ translations }) => {
                   setIsDialogOpen(false);
                   setSubmitStatus("");
                 }}
-                className="mt-6 rounded-full bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800"
+                className={`mt-6 rounded-full bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800 ${getFontClass(
+                  language ?? "en",
+                  "font-lustria"
+                )}`}
               >
                 {translations.closeButton}
               </Button>
@@ -141,7 +177,12 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ translations }) => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {submitStatus === "error" && (
                 <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <p className="text-red-600 text-sm">
+                  <p
+                    className={`text-red-600 text-sm ${getFontClass(
+                      language ?? "en",
+                      "font-lustria"
+                    )}`}
+                  >
                     {translations.errorMessage}
                   </p>
                 </div>
@@ -156,7 +197,12 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ translations }) => {
 
                   {/* Guest header */}
                   <div className="mb-4">
-                    <h3 className="text-lg font-medium text-gray-800">
+                    <h3
+                      className={`text-lg font-medium text-gray-800 ${getFontClass(
+                        language ?? "en",
+                        "font-lustria"
+                      )}`}
+                    >
                       {translations.guestLabel} {index + 1}
                     </h3>
                   </div>
@@ -189,10 +235,16 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ translations }) => {
               ))}
 
               <div>
-                <label className="block mb-2 text-sm font-medium">
+                <label
+                  className={`block mb-2 text-sm font-medium ${getFontClass(
+                    language ?? "en",
+                    "font-lustria"
+                  )}`}
+                >
                   {translations.messageLabel}
                 </label>
                 <Textarea
+                  id="message"
                   placeholder={translations.messagePlaceholder}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -206,7 +258,10 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ translations }) => {
                     type="button"
                     onClick={addGuest}
                     variant="outline"
-                    className="rounded-full border-[#f3bdaf] text-gray-700 hover:bg-pink-50"
+                    className={`rounded-full border-[#f3bdaf] text-gray-700 hover:bg-pink-50 text-lg ${getFontClass(
+                      language ?? "en",
+                      "font-lustria"
+                    )}`}
                   >
                     {translations.addGuestButton}
                   </Button>
@@ -215,7 +270,10 @@ const RSVPForm: React.FC<RSVPFormProps> = ({ translations }) => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="rounded-full bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800"
+                  className={`rounded-full bg-[#f3bdaf] hover:bg-[#f3bdaf] text-gray-800 text-lg ${getFontClass(
+                    language ?? "en",
+                    "font-lustria"
+                  )}`}
                 >
                   {isSubmitting
                     ? translations.submittingButton

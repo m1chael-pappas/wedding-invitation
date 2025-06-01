@@ -27,7 +27,7 @@ import translationsData from '../lib/translations.json';
 import { Translations } from './types/translations';
 
 const getFontClass = (language: string, baseFont: string = "") => {
-  const koreanFont = language === "ko" ? "font-nanum-myeongjo" : "";
+  const koreanFont = language === "ko" ? "font-yeon-sung" : "";
   return `${baseFont} ${koreanFont}`.trim();
 };
 
@@ -638,7 +638,7 @@ const WeddingInvitation = () => {
           {/* Section heading */}
           <FadeInSection delay={0.2}>
             <h2
-              className={`text-3xl font-black mt-15 mb-12 pb-1 inline-block ${getFontClass(
+              className={`text-3xl font-black mt-15 mb-12 pb-1  inline-block ${getFontClass(
                 currentLanguage,
                 "font-lustria"
               )}`}
@@ -778,7 +778,10 @@ const WeddingInvitation = () => {
                 {/* RSVP Button */}
                 <FadeInSection delay={0.6}>
                   <div className="flex justify-center mt-10">
-                    <RSVPForm translations={t.rsvp.form} />
+                    <RSVPForm
+                      translations={t.rsvp.form}
+                      language={currentLanguage}
+                    />
                   </div>
                 </FadeInSection>
               </div>
@@ -876,38 +879,6 @@ const WeddingInvitation = () => {
 
           {/* Parking */}
           <div className="mb-6 text-lg/snug">
-            <h3
-              className={`flex items-center text-lg font-black mb-2 ${getFontClass(
-                currentLanguage,
-                "font-lustria"
-              )}`}
-            >
-              <span className="mr-2">🚗</span> {t.gettingThere.parking.title}
-            </h3>
-            <p
-              className={`ml-2 mb-1 ${getFontClass(
-                currentLanguage,
-                "font-lustria"
-              )}`}
-            >
-              {t.gettingThere.parking.dropOff}
-            </p>
-            <p
-              className={`ml-2 mb-1 ${getFontClass(
-                currentLanguage,
-                "font-lustria"
-              )}`}
-            >
-              {t.gettingThere.parking.nearby}
-            </p>
-            <p
-              className={`ml-2 ${getFontClass(
-                currentLanguage,
-                "font-lustria"
-              )}`}
-            >
-              {t.gettingThere.parking.mapReference}
-            </p>
             <ParkingModal t={t} language={currentLanguage} />
           </div>
 
@@ -928,7 +899,7 @@ const WeddingInvitation = () => {
           {/* Signature heading */}
           <div className="w-full px-8 py-10 flex flex-col items-center ">
             {/* With love text in dashed border */}
-            <div className=" px-6 py-3 mb-8">
+            <div className=" px-6 py-3 ">
               <h2
                 className={`text-3xl/relaxed font-medium text-center ${getFontClass(
                   currentLanguage,
@@ -942,15 +913,15 @@ const WeddingInvitation = () => {
             </div>
 
             {/* Monogram/signature */}
-            <div className=" px-6 py-3">
-              <Image
-                src="/mj_logo.png"
-                alt="Signature"
-                width={500}
-                height={500}
-                className="h-20 w-200"
-              />
-            </div>
+          </div>
+          <div className=" px-6 py-3 mb-15">
+            <Image
+              src="/mj_logo.png"
+              alt="Monogram"
+              width={500}
+              height={500}
+              className="w-120 h-25"
+            />
           </div>
 
           {/* Traditional attire photo */}

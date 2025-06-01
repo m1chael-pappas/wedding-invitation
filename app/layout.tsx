@@ -6,6 +6,7 @@ import {
   Geist_Mono,
   Koulen,
   Nanum_Myeongjo,
+  Yeon_Sung,
 } from 'next/font/google';
 
 const geistSans = Geist({
@@ -30,6 +31,12 @@ const nanumMyeongjo = Nanum_Myeongjo({
   weight: ["400", "700", "800"],
 });
 
+const yeonSung = Yeon_Sung({
+  variable: "--font-yeon-sung",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
   title: "Wedding Invitation",
   description: "A wedding invitation for a special day",
@@ -43,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${koulen.variable} ${nanumMyeongjo.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${koulen.variable} ${nanumMyeongjo.variable} ${yeonSung.variable} antialiased`}
       >
         {children}
       </body>

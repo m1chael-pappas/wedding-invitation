@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { getFontClass } from '@/lib/utils';
 
 interface ParkingModalProps {
   t: Translation;
@@ -19,22 +20,40 @@ function ParkingModal({ t, language }: ParkingModalProps) {
 
   return (
     <div className="mb-6 text-lg/snug">
-      <h3 className="flex items-center text-lg font-black mb-2">
+      <h3
+        className={`flex items-center text-lg font-black mb-2 ${getFontClass(
+          language,
+          "font-lustria"
+        )}`}
+      >
         <span className="mr-2">🚗</span> {t.gettingThere.parking.title}
       </h3>
-      <p className="ml-2 mb-1">{t.gettingThere.parking.dropOff}</p>
-      <p className="ml-2 mb-1">{t.gettingThere.parking.nearby}</p>
+      <p className={`ml-2 mb-1 ${getFontClass(language, "font-lustria")}`}>
+        {t.gettingThere.parking.dropOff}
+      </p>
+      <p className={`ml-2 mb-1 ${getFontClass(language, "font-lustria")}`}>
+        {t.gettingThere.parking.nearby}
+      </p>
 
       <Dialog>
         <DialogTrigger asChild>
-          <p className="ml-2 text-blue-600 hover:text-blue-800 cursor-pointer underline">
+          <p
+            className={`ml-2 text-blue-600 hover:text-blue-800 cursor-pointer underline ${getFontClass(
+              language,
+              "font-lustria"
+            )} `}
+          >
             {t.gettingThere.parking.mapReference}
           </p>
         </DialogTrigger>
 
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>{t.gettingThere.parkingLocationTitle}</DialogTitle>
+            <DialogTitle
+              className={`ml-2 ${getFontClass(language, "font-lustria")} `}
+            >
+              {t.gettingThere.parkingLocationTitle}
+            </DialogTitle>
           </DialogHeader>
 
           <div className="space-y-4">
@@ -58,13 +77,18 @@ function ParkingModal({ t, language }: ParkingModalProps) {
               {parkingLocations.map((location, index) => (
                 <div
                   key={index}
-                  className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg"
+                  className="flex items-start space-x-1 p-3 bg-gray-50 rounded-lg"
                 >
-                  <div className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
-                    P
+                  <div className=" rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">
+                    🅿️
                   </div>
                   <div className="flex-1">
-                    <div className="font-semibold text-sm">
+                    <div
+                      className={`font-semibold text-sm ${getFontClass(
+                        language,
+                        "font-lustria"
+                      )}`}
+                    >
                       {location.name} ({location.distance})
                     </div>
                     <a

@@ -176,7 +176,7 @@
         "groomSection": {
             "title": "신랑",
             "name": "파파스 마이클",
-            "origin": "그리스",
+            "origin": "from 그리스",
             "profession": "개발자",
             "mbti": "ENTP",
             "zodiac": "궁수자리"
@@ -184,7 +184,7 @@
         "brideSection": {
             "title": "신부",
             "name": "이정하",
-            "origin": "한국",
+            "origin": "from 한국",
             "profession": "UX 디자이너",
             "mbti": "ISFJ",
             "zodiac": "양자리"
@@ -218,7 +218,7 @@
                 "venue": "Lauriston House, 시드니",
                 "guestLabel": "참석자",
                 "fullNamePlaceholder": "성함",
-                "dietaryPlaceholder": "식단 요청사항",
+                "dietaryPlaceholder": "식단 요청사항 (알러지, 채식 등)",
                 "messageLabel": "신랑신부에게 한 마디",
                 "messagePlaceholder": "축하 메시지",
                 "addGuestButton": "동반자 추가",
@@ -243,23 +243,23 @@
                 "title": "자차 이용",
                 "dropOff": "",
                 "nearby": "주차는 근처에 안내해드리는 주차 공간에 해주세요",
-                "mapReference": "See the parking map for details."
+                "mapReference": "자세한 내용은 주차 안내 지도를 참고해주세요."
             },
             "parkingLocationTitle": "근처 주차 공간",
             "parkingLocations": [
                 {
-                    "name": "At Rutledge St",
-                    "distance": "50m away",
+                    "name": "러틀리지 스트릿 파킹",
+                    "distance": " 도보 50m",
                     "address": "104-128 Rutledge St, Dundas Valley NSW 2117"
                 },
                 {
-                    "name": "At Miller Ave",
-                    "distance": "150m away",
+                    "name": "밀러 에비뉴 스트릿 파킹",
+                    "distance": "도보 150m",
                     "address": "156 Miller Ave, Dundas Valley NSW 2117"
                 },
                 {
-                    "name": "Brush Farm Car Park",
-                    "distance": "350m away",
+                    "name": "브러시 팜 주차장",
+                    "distance": "도보 350m",
                     "address": "4 Lawson St, Eastwood NSW 2122"
                 }
             ]
