@@ -9,6 +9,8 @@ import {
   Yeon_Sung,
 } from 'next/font/google';
 
+import { Analytics } from '@vercel/analytics/next';
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -53,6 +55,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${koulen.variable} ${nanumMyeongjo.variable} ${yeonSung.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
